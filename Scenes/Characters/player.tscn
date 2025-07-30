@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cborhd0d55gy4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j6hkg"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3etf2"]
+radius = 16.0
+height = 80.0
+
+[node name="Player" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+sprite_frames = SubResource("SpriteFrames_j6hkg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("CapsuleShape2D_3etf2")

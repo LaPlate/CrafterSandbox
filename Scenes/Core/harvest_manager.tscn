@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://kgh4burn0x84"]
+
+[ext_resource type="Script" uid="uid://1vtedp0w0ndm" path="res://HarvestManager.cs" id="1_ioha0"]
+
+[node name="HarvestManager" type="Node"]
+script = ExtResource("1_ioha0")
