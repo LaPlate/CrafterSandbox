@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cborhd0d55gy4"]
+[gd_scene load_steps=4 format=3 uid="uid://cborhd0d55gy4"]
+
+[ext_resource type="Script" uid="uid://y7xrdenduga2" path="res://Scripts/Characters/Player.cs" id="1_3etf2"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_j6hkg"]
 
@@ -7,6 +9,7 @@ radius = 16.0
 height = 80.0
 
 [node name="Player" type="Node2D"]
+script = ExtResource("1_3etf2")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 

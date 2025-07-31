@@ -6,13 +6,18 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m13wn"]
 
 [node name="ScrapPile1" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_8bcw7")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, 5)
 gravity_scale = -8.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+y_sort_enabled = true
 shape = SubResource("RectangleShape2D_m13wn")
 
 [node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+y_sort_enabled = true
 texture = ExtResource("1_3y1ee")
