@@ -1,12 +1,34 @@
-[gd_scene load_steps=4 format=3 uid="uid://melnbyq4fwg3"]
+[gd_scene load_steps=9 format=3 uid="uid://melnbyq4fwg3"]
 
 [ext_resource type="Texture2D" uid="uid://ctxlkb1pktela" path="res://Assets/ResourceNodes/ScrapPile1v1.png" id="1_3y1ee"]
 [ext_resource type="Script" uid="uid://5weg47q3jpd1" path="res://Scripts/Objects/ScrapPile1.cs" id="1_8bcw7"]
+[ext_resource type="Script" uid="uid://dhtnl2hndk8li" path="res://Resources/SkillRequirements.cs" id="2_d8f86"]
+[ext_resource type="Script" uid="uid://da4quex28n1d1" path="res://Resources/HarvestYieldData.cs" id="3_o7kht"]
+
+[sub_resource type="Resource" id="Resource_o7kht"]
+script = ExtResource("2_d8f86")
+Skill = 1
+RequiredLevel = 1
+metadata/_custom_type_script = "uid://dhtnl2hndk8li"
+
+[sub_resource type="Resource" id="Resource_x3mce"]
+script = ExtResource("3_o7kht")
+ResourceYielded = Array[int]([0])
+YieldWeight = 0.9
+metadata/_custom_type_script = "uid://da4quex28n1d1"
+
+[sub_resource type="Resource" id="Resource_5ujei"]
+script = ExtResource("3_o7kht")
+ResourceYielded = Array[int]([1])
+YieldWeight = 0.1
+metadata/_custom_type_script = "uid://da4quex28n1d1"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m13wn"]
 
 [node name="ScrapPile1" type="Node2D"]
 script = ExtResource("1_8bcw7")
+HarvestSkillsRequired = Array[Object]([SubResource("Resource_o7kht")])
+HarvestYield = Array[Resource]([SubResource("Resource_x3mce"), SubResource("Resource_5ujei")])
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
 gravity_scale = -8.0
