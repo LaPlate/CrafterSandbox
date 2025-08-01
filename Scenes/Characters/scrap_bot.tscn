@@ -153,20 +153,24 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eeawt"]
 radius = 11.0
-height = 50.0
 
 [node name="ScrapBot" type="Node2D"]
+z_as_relative = false
 y_sort_enabled = true
 script = ExtResource("1_6yqfo")
 SkillMap = Array[ExtResource("2_w5n8g")]([SubResource("Resource_e6y7x")])
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+y_sort_enabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 y_sort_enabled = true
+position = Vector2(0, 30)
 sprite_frames = SubResource("SpriteFrames_o1p3f")
 animation = &"Idle"
-frame_progress = 0.227355
+offset = Vector2(0, -18)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+y_sort_enabled = true
+position = Vector2(0, 23)
 shape = SubResource("CapsuleShape2D_eeawt")
