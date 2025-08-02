@@ -3,7 +3,10 @@ using Godot;
 [GlobalClass]
 public partial class HarvestSession : Resource
 {
-    public Node Harvester { get; set; }
-    public Node Harvestee { get; set; }
-    public float Progress { get; private set; }  
+    public IHarvester Harvester { get; set; }
+    public IHarvestable Harvestee { get; set; }
+    public float Progress { get; set; }
+    public HarvestProgressBar ProgressBar { get; set; }
 }
+
+

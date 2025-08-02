@@ -1,11 +1,9 @@
-[gd_scene load_steps=4 format=4 uid="uid://cko6yt1su8dn1"]
+[gd_scene load_steps=7 format=4 uid="uid://cko6yt1su8dn1"]
 
 [ext_resource type="Texture2D" uid="uid://5rtw8m7e4pif" path="res://Assets/Terrain/tilemap_flat.png" id="1_egrig"]
-[ext_resource type="PackedScene" uid="uid://ccqbgvfyiigps" path="res://Scenes/Characters/scrap_bot.tscn" id="1_np634"]
-[ext_resource type="PackedScene" uid="uid://melnbyq4fwg3" path="res://Scenes/Objects/scrap_pile_1.tscn" id="2_6o7qd"]
-[ext_resource type="PackedScene" uid="uid://kgh4burn0x84" path="res://Scenes/Core/harvest_manager.tscn" id="4_um637"]
 [ext_resource type="PackedScene" uid="uid://ccqbgvfyiigps" path="res://Scenes/Characters/scrap_bot.tscn" id="2_6o7qd"]
 [ext_resource type="PackedScene" uid="uid://melnbyq4fwg3" path="res://Scenes/Objects/scrap_pile_1.tscn" id="3_um637"]
+[ext_resource type="PackedScene" uid="uid://kgh4burn0x84" path="res://Scenes/Core/harvest_manager.tscn" id="4_um637"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_np634"]
 texture = ExtResource("1_egrig")
@@ -183,16 +181,6 @@ sources/1 = SubResource("TileSetAtlasSource_np634")
 [node name="SandboxRoom" type="Node2D"]
 y_sort_enabled = true
 
-[node name="Y-SortedObjects" type="Node2D" parent="."]
-y_sort_enabled = true
-
-[node name="ScrapPile1" parent="Y-SortedObjects" instance=ExtResource("2_6o7qd")]
-position = Vector2(458, 143)
-
-[node name="ScrapBot" parent="Y-SortedObjects" node_paths=PackedStringArray("harvestManager") instance=ExtResource("1_np634")]
-position = Vector2(415, 124)
-harvestManager = NodePath("../../HarvestManager")
-
 [node name="SandboxTerrain" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAABAAAAAQADAAAAAAABAAEAAQABAAEAAAAAAAEAAQAAAAAAAAAAAAIAAQAAAAIAAAABAAIAAQABAAEAAAACAAIAAQABAAEAAAACAAEAAQABAAAAAAADAAIAAQABAAEAAAADAAEAAQABAAAAAAACAAMAAQABAAEAAAABAAMAAQAAAAIAAAADAAMAAQABAAEAAAADAAQAAQABAAIAAAACAAQAAQAAAAIAAAAEAAQAAQABAAIAAAAFAAQAAQABAAIAAAAFAAIAAQABAAEAAAAGAAIAAQABAAEAAAAGAAEAAQABAAEAAAAFAAEAAQABAAEAAAAEAAIAAQABAAEAAAAEAAEAAQABAAEAAAAFAAAAAQABAAAAAAAEAAAAAQAAAAAAAAAHAAEAAQABAAEAAAAIAAEAAQABAAEAAAAIAAIAAQABAAEAAAAHAAIAAQABAAEAAAAHAAMAAQABAAEAAAAHAAQAAQABAAIAAAAGAAQAAQABAAIAAAAIAAMAAQABAAEAAAAJAAIAAQABAAEAAAAIAAQAAQACAAIAAAAJAAMAAQACAAIAAAAKAAIAAQACAAIAAAAKAAMAAQAFAAAAAAAJAAEAAQABAAEAAAAKAAEAAQABAAEAAAALAAEAAQACAAIAAAAJAAAAAQABAAEAAAAIAAAAAQABAAEAAAAHAAAAAQABAAEAAAAGAAAAAQABAAEAAAAKAAAAAQABAAEAAAALAAAAAQACAAAAAAAKAP//AQACAAAAAAAJAP//AQABAAAAAAAIAP//AQABAAAAAAAHAP//AQABAAAAAAAGAP//AQAAAAAAAAAKAAQAAQAGAAIAAAAJAAQAAQAFAAMAAAALAAQAAQAGAAIAAAALAAMAAQAGAAEAAAALAAIAAQAFAAAAAAAMAAIAAQAGAAEAAAANAAMAAQAGAAEAAAAMAAMAAQAGAAEAAAAOAAMAAQAGAAEAAAAOAAQAAQAGAAIAAAANAAQAAQAGAAIAAAAMAAQAAQAGAAIAAAAOAAIAAQAGAAEAAAANAAIAAQAGAAEAAAAMAAEAAQAFAAAAAAANAAEAAQAGAAEAAAAOAAEAAQAHAAEAAAAOAAAAAQAHAAAAAAANAAAAAQAFAAAAAAAPAAQAAQAHAAIAAAAPAAMAAQAHAAEAAAAPAAIAAQAHAAAAAAAFAAMAAQABAAEAAAAEAAMAAQABAAEAAAAGAAMAAQABAAEAAAA=")
 tile_set = SubResource("TileSet_6o7qd")
@@ -200,8 +188,12 @@ tile_set = SubResource("TileSet_6o7qd")
 [node name="Y-Sort Objects" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="ScrapBot" parent="Y-Sort Objects" instance=ExtResource("2_6o7qd")]
+[node name="ScrapBot" parent="Y-Sort Objects" node_paths=PackedStringArray("harvestManager", "sampleNode") instance=ExtResource("2_6o7qd")]
 position = Vector2(384, 128)
+harvestManager = NodePath("../../HarvestManager")
+sampleNode = NodePath("")
 
 [node name="ScrapPile1" parent="Y-Sort Objects" instance=ExtResource("3_um637")]
-position = Vector2(434, 147)
+position = Vector2(432, 144)
+
+[node name="HarvestManager" parent="." instance=ExtResource("4_um637")]

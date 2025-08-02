@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://beksergmwigs3"]
+
+[ext_resource type="Script" uid="uid://bynqvu0m7noe0" path="res://Scripts/Objects/UI/HarvestProgressBar.cs" id="1_6hou8"]
+[ext_resource type="Texture2D" uid="uid://eg0jyb63ufpn" path="res://Assets/UI/ProgressBar9Box.png" id="1_qc6np"]
+
+[node name="HarvestProgressBar" type="Node2D"]
+script = ExtResource("1_6hou8")
+
+[node name="9PRBorder" type="NinePatchRect" parent="."]
+offset_right = 40.0
+offset_bottom = 8.0
+texture = ExtResource("1_qc6np")
+patch_margin_left = 1
+patch_margin_top = 1
+patch_margin_right = 1
+patch_margin_bottom = 1
+
+[node name="CRCompletedFill" type="ColorRect" parent="."]
+offset_right = 1.0
+offset_bottom = 8.0
