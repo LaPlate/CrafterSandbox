@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://eg0jyb63ufpn" path="res://Assets/UI/ProgressBar9Box.png" id="1_qc6np"]
 
 [node name="HarvestProgressBar" type="Node2D"]
+visible = false
 script = ExtResource("1_6hou8")
 
 [node name="9PRBorder" type="NinePatchRect" parent="."]

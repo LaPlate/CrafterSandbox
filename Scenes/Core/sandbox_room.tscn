@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=4 uid="uid://cko6yt1su8dn1"]
+[gd_scene load_steps=8 format=4 uid="uid://cko6yt1su8dn1"]
 
 [ext_resource type="Texture2D" uid="uid://5rtw8m7e4pif" path="res://Assets/Terrain/tilemap_flat.png" id="1_egrig"]
 [ext_resource type="PackedScene" uid="uid://ccqbgvfyiigps" path="res://Scenes/Characters/scrap_bot.tscn" id="2_6o7qd"]
 [ext_resource type="PackedScene" uid="uid://melnbyq4fwg3" path="res://Scenes/Objects/scrap_pile_1.tscn" id="3_um637"]
 [ext_resource type="PackedScene" uid="uid://kgh4burn0x84" path="res://Scenes/Core/harvest_manager.tscn" id="4_um637"]
+[ext_resource type="PackedScene" uid="uid://b37xa7fse13wn" path="res://Scenes/Objects/UI/InventoryGUI.tscn" id="5_n37up"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_np634"]
 texture = ExtResource("1_egrig")
@@ -189,11 +190,22 @@ tile_set = SubResource("TileSet_6o7qd")
 y_sort_enabled = true
 
 [node name="ScrapBot" parent="Y-Sort Objects" node_paths=PackedStringArray("harvestManager", "sampleNode") instance=ExtResource("2_6o7qd")]
-position = Vector2(384, 128)
+position = Vector2(461, 168)
 harvestManager = NodePath("../../HarvestManager")
-sampleNode = NodePath("")
+sampleNode = NodePath("../ScrapPile1")
 
 [node name="ScrapPile1" parent="Y-Sort Objects" instance=ExtResource("3_um637")]
-position = Vector2(432, 144)
+position = Vector2(518, 197)
+
+[node name="ScrapBot2" parent="Y-Sort Objects" node_paths=PackedStringArray("harvestManager", "sampleNode") instance=ExtResource("2_6o7qd")]
+position = Vector2(553, 132)
+harvestManager = NodePath("../../HarvestManager")
+sampleNode = NodePath("../ScrapPile1")
 
 [node name="HarvestManager" parent="." instance=ExtResource("4_um637")]
+
+[node name="InventoryGUI" parent="." instance=ExtResource("5_n37up")]
+offset_left = 441.0
+offset_top = 329.0
+offset_right = 441.0
+offset_bottom = 329.0

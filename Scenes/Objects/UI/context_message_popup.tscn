@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7fae8iyt7ies"]
+
+[ext_resource type="Script" uid="uid://cgwrh05cy08am" path="res://Scripts/Objects/UI/ContextMessagePopup.cs" id="1_b8u84"]
+
+[node name="ContextMessagePopup" type="Node2D"]
+script = ExtResource("1_b8u84")
+MessageScrollSpeed = 20.0
+MessageScrollDuration = 1.0
+
+[node name="ContextMessageBox" type="RichTextLabel" parent="."]
+offset_right = 169.0
+offset_bottom = 100.0
+autowrap_mode = 0

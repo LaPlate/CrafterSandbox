@@ -13,11 +13,13 @@ public partial class HarvestProgressBar : Node2D
     }
 
 
-    public void UpdateProgressBar(float CompletedPct, Node2D Caller)
+    public void UpdateProgressBar(double CompletedPct, Node2D Caller)
     {
-        float computedLength = CompletedPct * NPR.Size.X;
-        ProgressBar.Size = new Vector2(computedLength, NPR.Size.Y);
-        ProgressBar.Position = new Vector2(Caller.Position.X, Caller.Position.Y + 5);
+        double computedLength = CompletedPct * NPR.Size.X;
+        ProgressBar.Size = new Vector2((float)computedLength, NPR.Size.Y);
+
+        ProgressBar.GlobalPosition = Caller.GlobalPosition + new Vector2(-20, -35);
+        NPR.GlobalPosition = Caller.GlobalPosition + new Vector2(-20, -35);
     }
 }
 

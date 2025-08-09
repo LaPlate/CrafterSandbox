@@ -159,7 +159,7 @@ height = 50.0
 z_as_relative = false
 y_sort_enabled = true
 script = ExtResource("1_6yqfo")
-SkillMap = Array[ExtResource("2_w5n8g")]([SubResource("Resource_e6y7x")])
+SkillMap = Array[Object]([SubResource("Resource_e6y7x")])
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 y_sort_enabled = true

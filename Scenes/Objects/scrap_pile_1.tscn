@@ -1,54 +1,56 @@
 [gd_scene load_steps=11 format=3 uid="uid://melnbyq4fwg3"]
 
 [ext_resource type="Texture2D" uid="uid://ctxlkb1pktela" path="res://Assets/ResourceNodes/ScrapPile1v1.png" id="1_3y1ee"]
-[ext_resource type="Script" uid="uid://5weg47q3jpd1" path="res://Scripts/Objects/ScrapPile1.cs" id="1_8bcw7"]
-[ext_resource type="Script" uid="uid://dhtnl2hndk8li" path="res://Resources/SkillRequirements.cs" id="2_d8f86"]
-[ext_resource type="Script" uid="uid://da4quex28n1d1" path="res://Resources/HarvestYieldData.cs" id="3_o7kht"]
-[ext_resource type="Script" uid="uid://uhnem1pq0t0s" path="res://Resources/HarvestableData.cs" id="4_x3mce"]
+[ext_resource type="Script" uid="uid://dkamqtlkcg05s" path="res://Scripts/Objects/ScrapPile1.cs" id="1_8bcw7"]
+[ext_resource type="Script" uid="uid://dhtnl2hndk8li" path="res://Resources/SkillRequirements.cs" id="2_x3mce"]
+[ext_resource type="Script" uid="uid://da4quex28n1d1" path="res://Resources/HarvestYieldData.cs" id="3_5ujei"]
+[ext_resource type="Script" uid="uid://uhnem1pq0t0s" path="res://Resources/HarvestableData.cs" id="4_a0vp3"]
 
-[sub_resource type="Resource" id="Resource_x3mce"]
-script = ExtResource("2_d8f86")
+[sub_resource type="Resource" id="Resource_av0bd"]
+script = ExtResource("2_x3mce")
 Skill = 1
 RequiredLevel = 4
 metadata/_custom_type_script = "uid://dhtnl2hndk8li"
 
-[sub_resource type="Resource" id="Resource_5ujei"]
-script = ExtResource("3_o7kht")
-ResourceYielded = Array[int]([0])
-YieldWeight = 0.9
+[sub_resource type="Resource" id="Resource_u6uku"]
+script = ExtResource("3_5ujei")
+ResourceYielded = 0
+YieldWeight = 1.0
+NumberYielded = 2
 metadata/_custom_type_script = "uid://da4quex28n1d1"
 
-[sub_resource type="Resource" id="Resource_av0bd"]
-script = ExtResource("3_o7kht")
-ResourceYielded = Array[int]([1])
+[sub_resource type="Resource" id="Resource_2mbm3"]
+script = ExtResource("3_5ujei")
+ResourceYielded = 1
 YieldWeight = 0.1
+NumberYielded = 1
 metadata/_custom_type_script = "uid://da4quex28n1d1"
 
-[sub_resource type="Resource" id="Resource_a0vp3"]
-script = ExtResource("4_x3mce")
-SkillsRequired = [SubResource("Resource_x3mce")]
+[sub_resource type="Resource" id="Resource_l55ef"]
+script = ExtResource("4_a0vp3")
+SkillsRequired = Array[Object]([SubResource("Resource_av0bd")])
 TechRequired = Array[Object]([])
-Yield = Array[Object]([SubResource("Resource_5ujei"), SubResource("Resource_av0bd")])
-BaseYieldSpeed = 0
+Yield = Array[Object]([SubResource("Resource_u6uku"), SubResource("Resource_2mbm3")])
+BaseYieldSpeed = 1
 metadata/_custom_type_script = "uid://uhnem1pq0t0s"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m13wn"]
 
-[node name="ScrapPile1" type="Node2D"]
+[node name="ScrapPile1" type="RigidBody2D"]
 y_sort_enabled = true
+gravity_scale = 0.0
+freeze = true
 script = ExtResource("1_8bcw7")
-HarvestData = SubResource("Resource_a0vp3")
+HarvestData = SubResource("Resource_l55ef")
+MaxHarvests = 10
 
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
 position = Vector2(0, 5)
-gravity_scale = -8.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-y_sort_enabled = true
 shape = SubResource("RectangleShape2D_m13wn")
 
-[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 y_sort_enabled = true
+position = Vector2(0, 5)
 texture = ExtResource("1_3y1ee")
 offset = Vector2(3, -2)

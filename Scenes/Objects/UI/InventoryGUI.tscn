@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://b37xa7fse13wn"]
+
+[ext_resource type="Script" uid="uid://dorwl1kgv3jt5" path="res://Scripts/Objects/UI/InventoryGui.cs" id="1_r67ma"]
+
+[node name="InventoryGUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_r67ma")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ScrapLabel" type="RichTextLabel" parent="HBoxContainer"]
+custom_minimum_size = Vector2(52, 0)
+layout_mode = 2
+text = "Scrap:"
+
+[node name="ScrapTextBox" type="RichTextLabel" parent="HBoxContainer"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+
+[node name="WiringLabel" type="RichTextLabel" parent="HBoxContainer"]
+custom_minimum_size = Vector2(62, 0)
+layout_mode = 2
+text = "Wiring:"
+
+[node name="WiringTextBox" type="RichTextLabel" parent="HBoxContainer"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
