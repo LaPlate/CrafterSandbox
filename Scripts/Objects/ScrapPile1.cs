@@ -12,6 +12,8 @@ public partial class ScrapPile1 : RigidBody2D, IHarvestable
 
     [Export] public int MaxHarvests;
 
+    public bool TimeToDie { get; set; }
+
     public override void _Ready()
     {
         InventoryGUI = GetTree().CurrentScene.GetNode<InventoryGui>("InventoryGUI");
@@ -19,7 +21,7 @@ public partial class ScrapPile1 : RigidBody2D, IHarvestable
     }
 
 
-    public void YieldHarvest(IHarvester Harvester)
+    public void YieldHarvest(HarvestSession Session)
     {
         var YieldMessage = YieldMessageScene.Instantiate<ContextMessagePopup>();
         Dictionary<Yields.Yield, int> TotalYield = new();
@@ -44,12 +46,20 @@ public partial class ScrapPile1 : RigidBody2D, IHarvestable
         GD.Print(message);
         YieldMessage.SetText(message);
         GetTree().Root.AddChild(YieldMessage);
-        Node2D Harvester2D = Harvester as Node2D;
+        Node2D Harvester2D = Session.Harvester as Node2D;
         YieldMessage.GlobalPosition = Harvester2D.GlobalPosition + new Vector2(-30, -50);
 
         MaxHarvests--;
         GD.Print($"{MaxHarvests.ToString()} harvests remaining.");
-        if (MaxHarvests == 0) QueueFree();
+        if (MaxHarvests == 0)
+        {
+            HarvestManager.InactivateAllSessionsForHarvestee(Session.Harvestee);
+            TimeToDie = true;
+        }
+    }
 
+    public void Die()
+    {
+        QueueFree();
     }
 }

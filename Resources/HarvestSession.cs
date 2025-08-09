@@ -6,6 +6,7 @@ public partial class HarvestSession : Resource
     public IHarvester Harvester { get; set; }
     public IHarvestable Harvestee { get; set; }
     public double Progress { get; set; }
+    public bool IsActive { get; set; }
 }
 
 

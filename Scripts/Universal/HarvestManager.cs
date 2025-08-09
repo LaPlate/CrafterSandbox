@@ -8,7 +8,7 @@ using System.Security.Cryptography.X509Certificates;
 public partial class HarvestManager : Node
 {
     public static List<HarvestSession> ActiveHarvests = new();
-    public static List<HarvestSession> HarvestsToRemove = new();
+    public static List<HarvestSession> HarvestsToRemove { get; set; } = new();
 
     public static bool CanHarvest(IHarvester Harvester, IHarvestable Harvestee) //Check for sufficient Skill
     {
@@ -29,17 +29,17 @@ public partial class HarvestManager : Node
             GD.Print(session.Harvester, " -->", session.Harvestee);
 
             if (session.Harvester == Harvester && session.Harvestee == Harvestee)
-            {
-                GD.Print("Blocked Duplicate session.");
-                return false;
-            }
-            else
-            {
-                foreach (HarvestSession Session in ActiveHarvests)
                 {
-                    GD.Print(Session.Harvester.ToString(), " -->", Session.Harvestee.ToString());
+                    GD.Print("Blocked Duplicate session.");
+                    return false;
                 }
-            }
+                else
+                {
+                    foreach (HarvestSession Session in ActiveHarvests)
+                    {
+                        GD.Print(Session.Harvester.ToString(), " -->", Session.Harvestee.ToString());
+                    }
+                }
         }
         
         return true;
@@ -55,7 +55,8 @@ public partial class HarvestManager : Node
             var newHarvest = new HarvestSession
             {
                 Harvester = harvester,
-                Harvestee = harvestee
+                Harvestee = harvestee,
+                IsActive = true
 
             };
             harvester.ProgressBar.Visible = true;
@@ -83,18 +84,16 @@ public partial class HarvestManager : Node
 
     }
     //Cancel all Harvests for a Harvestee, in case it's depleted, destroyed, etc.
-    public void CancelAllSessionsForHarvestee(IHarvestable harvestee)
+    public static void InactivateAllSessionsForHarvestee(IHarvestable harvestee)
     {
         foreach (HarvestSession Session in ActiveHarvests)
         {
             if (Session.Harvestee == harvestee)
             {
+                Session.IsActive = false;
                 HarvestsToRemove.Add(Session);
             }
-        }
-        CancelSessions(HarvestsToRemove);
-        HarvestsToRemove.Clear();
-        
+        }      
     }
 
 
@@ -126,27 +125,39 @@ public partial class HarvestManager : Node
 
     public void TickHarvests(double delta)
     {
+
         foreach (HarvestSession Session in ActiveHarvests)
         {
+
             GD.Print("Active Harvests: ", ActiveHarvests.Count.ToString());
             double tickProgress = GetModifiedHarvestMultiplier(Session.Harvester, Session.Harvestee) * delta;
-
-            Session.Progress += tickProgress;
-            
-
-            if (Session.Progress >= 1)
+            if (Session.IsActive == false)
             {
-                Session.Harvestee.YieldHarvest(Session.Harvester);
-                Session.Progress = 0;
+                HarvestsToRemove.Add(Session);
             }
             else
             {
-                if (Session.Harvester.ProgressBar == null) GD.Print("ProgressBar is null when calling update");
+                Session.Progress += tickProgress;
+                if (Session.Progress >= 1)
+                {
+                    Session.Harvestee.YieldHarvest(Session);
+                    Session.Progress = 0;
+                }
+                else
+                {
+                    if (Session.Harvester.ProgressBar == null) GD.Print("ProgressBar is null when calling update");
 
-                GD.Print($"Session Harvester: {Session.Harvester}. Session Progress is {Session.Progress}");
-                Session.Harvester.ProgressBar.UpdateProgressBar(Session.Progress, Session.Harvester as Node2D);
+                    GD.Print($"Session Harvester: {Session.Harvester}. Session Progress is {Session.Progress}");
+                    Session.Harvester.ProgressBar.UpdateProgressBar(Session.Progress, Session.Harvester as Node2D);
+                }
             }
         }
+        CancelSessions(HarvestsToRemove);
+        foreach (HarvestSession Session in HarvestsToRemove)
+        {
+            if (Session.Harvestee.TimeToDie == true) Session.Harvestee.Die();
+        }
+
     }
 
     public static double GetModifiedHarvestMultiplier(IHarvester Harvester, IHarvestable Harvestee)
