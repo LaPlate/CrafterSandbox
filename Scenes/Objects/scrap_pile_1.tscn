@@ -38,6 +38,7 @@ metadata/_custom_type_script = "uid://uhnem1pq0t0s"
 
 [node name="ScrapPile1" type="RigidBody2D"]
 y_sort_enabled = true
+collision_layer = 3
 gravity_scale = 0.0
 freeze = true
 script = ExtResource("1_8bcw7")

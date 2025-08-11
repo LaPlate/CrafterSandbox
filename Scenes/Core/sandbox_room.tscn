@@ -189,18 +189,16 @@ tile_set = SubResource("TileSet_6o7qd")
 [node name="Y-Sort Objects" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="ScrapBot" parent="Y-Sort Objects" node_paths=PackedStringArray("harvestManager", "sampleNode") instance=ExtResource("2_6o7qd")]
-position = Vector2(461, 168)
+[node name="ScrapBot" parent="Y-Sort Objects" node_paths=PackedStringArray("harvestManager") instance=ExtResource("2_6o7qd")]
+position = Vector2(387, 141)
 harvestManager = NodePath("../../HarvestManager")
-sampleNode = NodePath("../ScrapPile1")
 
 [node name="ScrapPile1" parent="Y-Sort Objects" instance=ExtResource("3_um637")]
 position = Vector2(518, 197)
 
-[node name="ScrapBot2" parent="Y-Sort Objects" node_paths=PackedStringArray("harvestManager", "sampleNode") instance=ExtResource("2_6o7qd")]
-position = Vector2(553, 132)
+[node name="ScrapBot2" parent="Y-Sort Objects" node_paths=PackedStringArray("harvestManager") instance=ExtResource("2_6o7qd")]
+position = Vector2(620, 69)
 harvestManager = NodePath("../../HarvestManager")
-sampleNode = NodePath("../ScrapPile1")
 
 [node name="HarvestManager" parent="." instance=ExtResource("4_um637")]
 

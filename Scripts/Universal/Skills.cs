@@ -10,7 +10,11 @@ public static class Skills
         Assembly,
         Mining,
         Smelting,
-        Fabrication
+        Fabrication,
+        Floating,
+        Running,
+        Scanning,
+        Repairing
 
     }
 }

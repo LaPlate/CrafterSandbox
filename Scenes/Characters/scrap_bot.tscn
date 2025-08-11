@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://ccqbgvfyiigps"]
+[gd_scene load_steps=28 format=3 uid="uid://ccqbgvfyiigps"]
 
 [ext_resource type="Texture2D" uid="uid://byobiyfeqa0mi" path="res://Assets/Characters/Bots/ScrapBotv1-Sheet.png" id="1_0vkcp"]
 [ext_resource type="Script" uid="uid://bpcouov2rpbwc" path="res://Scripts/Characters/Bots/ScrapBot.cs" id="1_6yqfo"]
@@ -8,6 +8,18 @@
 script = ExtResource("2_w5n8g")
 ActorSkill = 1
 ActorSkillRank = 5
+metadata/_custom_type_script = "uid://cdhr4rnsirny4"
+
+[sub_resource type="Resource" id="Resource_w5n8g"]
+script = ExtResource("2_w5n8g")
+ActorSkill = 7
+ActorSkillRank = 2
+metadata/_custom_type_script = "uid://cdhr4rnsirny4"
+
+[sub_resource type="Resource" id="Resource_c5q3w"]
+script = ExtResource("2_w5n8g")
+ActorSkill = 0
+ActorSkillRank = 3
 metadata/_custom_type_script = "uid://cdhr4rnsirny4"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6yqfo"]
@@ -159,7 +171,7 @@ height = 50.0
 z_as_relative = false
 y_sort_enabled = true
 script = ExtResource("1_6yqfo")
-SkillMap = Array[Object]([SubResource("Resource_e6y7x")])
+SkillMap = Array[Object]([SubResource("Resource_e6y7x"), SubResource("Resource_w5n8g"), SubResource("Resource_c5q3w")])
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 y_sort_enabled = true
